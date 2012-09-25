@@ -11,9 +11,9 @@ exports.Potter = class Potter
         undiscountedPrice = calculateStandardPrice shoppingCart
         absoluteDiscount = calculateAbsoluteDiscount shoppingCart
         
-        assert.ok absoluteDiscount == 0 || absoluteDiscount < undiscountedPrice 
-
         discountedPrice = undiscountedPrice - absoluteDiscount
+
+        assert.ok discountedPrice > 0 || shoppingCart.length == 0
 
         return discountedPrice
 
