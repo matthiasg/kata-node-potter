@@ -8,8 +8,6 @@ exports.Potter = class Potter
 
     price: (shoppingCart) ->
         
-        return 0 if isEmptyShoppingCart(shoppingCart)
-
         undiscountedPrice = calculateStandardPrice shoppingCart
         absoluteDiscount = calculateAbsoluteDiscount shoppingCart
         
