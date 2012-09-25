@@ -17,8 +17,13 @@ exports.Potter = class Potter
 
         return discountedPrice
 
-    calculateStandardPrice = (books) -> books.length * SINGLE_BOOK_PRICE
+    calculateStandardPrice = (books) ->
 
+        if books.length
+            return books.length * SINGLE_BOOK_PRICE
+        else
+            return books * SINGLE_BOOK_PRICE
+        
     calculateAbsoluteDiscount = (shoppingCart) ->
 
         absoluteDiscount = 0
@@ -26,21 +31,44 @@ exports.Potter = class Potter
         setsOfDistinctBooks = convertShoppingCartIntoSetsOfDistinctBooks shoppingCart
 
         for s in setsOfDistinctBooks             
-            absoluteDiscount += calculateAvailableDiscountOnSet(s)
+            absoluteDiscount += calculateMaximumAvailableDiscountOnSet(s)
 
         return absoluteDiscount
 
-    calculateAvailableDiscountOnSet = (set) ->
+    calculateMaximumAvailableDiscountOnSet = (set) ->
 
-        numberOfDistinctBooksInSet = set.length
-        discount = DISCOUNTS[numberOfDistinctBooksInSet]
+        possibleDiscounts = []
 
-        undiscountedPriceOfSet = calculateStandardPrice(set)
+        for groupSize in [2..5]
+            
+            groups = splitSetIntoGroups set, groupSize
+
+            numberOfBooksThatCanBeDiscounted = groups.length * groupSize
+            discount = DISCOUNTS[groupSize]
+
+            undiscountedPriceOfSet = calculateStandardPrice(numberOfBooksThatCanBeDiscounted)        
+            absoluteDiscountOnSet = undiscountedPriceOfSet * discount
+
+            possibleDiscounts.push absoluteDiscountOnSet
+
+        return _.max(possibleDiscounts)
+
+    splitSetIntoGroups = (set,minimumGroupSize) -> 
+        assert.ok minimumGroupSize > 0
+
+        groups = []
+        currentGroup = []
         
-        absoluteDiscountOnSet = undiscountedPriceOfSet * discount
+        for book in set
 
-        return absoluteDiscountOnSet        
+            currentGroup.push book
 
+            if currentGroup.length == minimumGroupSize
+                groups.push currentGroup 
+                currentGroup = []   
+
+        for g in groups
+            assert.ok g.length == minimumGroupSize
 
     convertShoppingCartIntoSetsOfDistinctBooks = (shoppingCart) ->
         # IN:  [0,0,0,1,1,1,5,4]
