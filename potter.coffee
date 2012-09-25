@@ -30,6 +30,8 @@ exports.Potter = class Potter
 
         setsOfDistinctBooks = convertShoppingCartIntoSetsOfDistinctBooks shoppingCart
 
+        # TODO: Now we sum up the maximums per set, but
+        # we would want the best overall so some permutations must come next
         for s in setsOfDistinctBooks             
             absoluteDiscount += calculateMaximumAvailableDiscountOnSet(s)
 
