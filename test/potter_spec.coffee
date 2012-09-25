@@ -13,6 +13,7 @@ describe 'kata-potter', ->
 
         it 'should cost 8 for a single book of type 0', ->
             expect(potter.price [0]).to.equal 8
+        
 
         it 'should cost 8 for a single book of type 1', ->
             expect(potter.price [1]).to.equal 8
@@ -46,7 +47,6 @@ describe 'kata-potter', ->
         it 'should apply a discount when buying 5 books of different types', ->
             expect(potter.price [0, 1, 2, 3, 4]).to.equal 8 * 5 * 0.75
 
-
     describe 'testSeveralDiscounts', ->
         it 'should apply correct discount for two pairs of different books', ->
             expect(potter.price [0, 0, 1, 1]).to.equal 2 * (8 * 2 * 0.95)
@@ -60,3 +60,4 @@ describe 'kata-potter', ->
     describe 'testEdgeCases', ->
         #expect(potter.price [0, 0, 1, 1, 2, 2, 3, 4]).to.equal 2 * (8 * 4 * 0.8)
         #expect(potter.price [0, 0, 0, 0, 0, 1, 1, 1, 1, 1,2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4]).to.equal(3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8))
+###
