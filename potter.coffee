@@ -43,11 +43,12 @@ exports.Potter = class Potter
             
             groups = splitSetIntoGroups set, groupSize
 
-            numberOfBooksThatCanBeDiscounted = groups.length * groupSize
             discount = DISCOUNTS[groupSize]
+            numberOfBooksThatCanBeDiscounted = groups.length * groupSize
+           
 
             undiscountedPriceOfSet = calculateStandardPrice(numberOfBooksThatCanBeDiscounted)        
-            absoluteDiscountOnSet = undiscountedPriceOfSet * discount
+            absoluteDiscountOnSet = applyDiscount(undiscountedPriceOfSet,discount)
 
             possibleDiscounts.push absoluteDiscountOnSet
 
@@ -90,5 +91,7 @@ exports.Potter = class Potter
         
         return sets
 
-    applyDiscount = (price, discount) -> return price * discount
+    applyDiscount = (price, discount) -> return floor( price * discount, 4 )
+
+    floor = (num, dec) -> Math.floor(num*Math.pow(10,dec))/Math.pow(10,dec)
 

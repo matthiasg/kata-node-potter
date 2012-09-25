@@ -6,6 +6,7 @@ potter = new Potter
 
 describe 'kata-potter', ->
 
+    ###
     describe 'buying books', ->
     
         it 'should cost 0 when a shopping cart is empty', ->
@@ -56,9 +57,9 @@ describe 'kata-potter', ->
             expect(potter.price [0, 0, 1, 2, 2, 3]).to.equal((8 * 4 * 0.8) + (8 * 2 * 0.95))
         it 'with five different books and one extra', ->
             expect(potter.price [0, 1, 1, 2, 3, 4]).to.equal 8 + (8 * 5 * 0.75)
-
+    ###
     describe 'optimization cases', ->
         it 'should handle special cases', -> 
-            expect(potter.price [0, 0, 1, 1, 2, 2, 3, 4]).to.equal 2 * (8 * 4 * 0.8)
+            expect(potter.price [0, 0, 1, 1, 2, 2, 3, 3, 4]).to.equal 2 * (8 * 4 * 0.8) + 8
         it 'should handle special cases', -> 
             expect(potter.price [0, 0, 0, 0, 0, 1, 1, 1, 1, 1,2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4]).to.equal(3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8))
