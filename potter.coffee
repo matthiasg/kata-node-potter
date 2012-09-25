@@ -26,15 +26,19 @@ exports.Potter = class Potter
         setsOfDistinctBooks = convertShoppingCartIntoSetsOfDistinctBooks shoppingCart
 
         for s in setsOfDistinctBooks             
-            
-            discount = DISCOUNTS[s.length]
-
-            undiscountedPriceOfSet = calculateStandardPrice(s)
-            absoluteDiscountOnSet = undiscountedPriceOfSet * discount
-
-            absoluteDiscount += absoluteDiscountOnSet
+            absoluteDiscount += calculateAvailableDiscountOnSet(s)
 
         return absoluteDiscount
+
+    calculateAvailableDiscountOnSet = (set) ->
+
+        discount = DISCOUNTS[set.length]
+
+        undiscountedPriceOfSet = calculateStandardPrice(set)
+        
+        absoluteDiscountOnSet = undiscountedPriceOfSet * discount
+
+        return absoluteDiscountOnSet        
 
 
     convertShoppingCartIntoSetsOfDistinctBooks = (shoppingCart) ->
