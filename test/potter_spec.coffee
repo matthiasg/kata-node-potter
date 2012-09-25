@@ -11,19 +11,19 @@ describe 'kata-potter', ->
         it 'should cost 0 when a shopping cart is empty', ->
             expect(potter.price []).to.equal 0        
 
-        it 'should cost 8 for a single book', ->
+        it 'should cost 8 for a single book of type 0', ->
             expect(potter.price [0]).to.equal 8
 
-        it 'should cost 8 for a single book', ->
+        it 'should cost 8 for a single book of type 1', ->
             expect(potter.price [1]).to.equal 8
 
-        it 'should cost 8 for a single book', ->
+        it 'should cost 8 for a single book of type 2', ->
             expect(potter.price [2]).to.equal 8
 
-        it 'should cost 8 for a single book', ->
+        it 'should cost 8 for a single book of type 3', ->
             expect(potter.price [3]).to.equal 8
 
-        it 'should cost 8 for a single book', ->
+        it 'should cost 8 for a single book of type 4', ->
             expect(potter.price [4]).to.equal 8
 
         it 'should cost 16 for two books of the same kind', ->
@@ -32,11 +32,18 @@ describe 'kata-potter', ->
         it 'should cost 24 for three books of the same kind', ->
             expect(potter.price [1, 1, 1]).to.equal 8 * 3
 
-    describe 'simple discounts', ->
-        it 'testSimpleDiscounts', ->
+    describe 'simple discounts', ->    
+
+        it 'should apply a discount when buying 2 books of different types', ->
             expect(potter.price [0, 1]).to.equal 8 * 2 * 0.95
+
+        it 'should apply a discount when buying 3 books of different types', ->
             expect(potter.price [0, 2, 4]).to.equal 8 * 3 * 0.9
+
+        it 'should apply a discount when buying 4 books of different types', ->
             expect(potter.price [0, 1, 2, 4]).to.equal 8 * 4 * 0.8
+
+        it 'should apply a discount when buying 5 books of different types', ->
             expect(potter.price [0, 1, 2, 3, 4]).to.equal 8 * 5 * 0.75
 
 
