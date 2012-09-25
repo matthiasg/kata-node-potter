@@ -32,7 +32,8 @@ exports.Potter = class Potter
 
     calculateAvailableDiscountOnSet = (set) ->
 
-        discount = DISCOUNTS[set.length]
+        numberOfDistinctBooksInSet = set.length
+        discount = DISCOUNTS[numberOfDistinctBooksInSet]
 
         undiscountedPriceOfSet = calculateStandardPrice(set)
         
