@@ -48,10 +48,14 @@ describe 'kata-potter', ->
 
 
     describe 'testSeveralDiscounts', ->
-        #expect(potter.price [0, 0, 1]).to.equal 8 + (8 * 2 * 0.95)
-        #expect(potter.price [0, 0, 1, 1]).to.equal 2 * (8 * 2 * 0.95)
-        #expect(potter.price [0, 0, 1, 2, 2, 3]).to.equal((8 * 4 * 0.8) + (8 * 2 * 0.95))
-        #expect(potter.price [0, 1, 1, 2, 3, 4]).to.equal 8 + (8 * 5 * 0.75)
+        it 'should apply correct discount for two different books with one extra', ->
+            expect(potter.price [0, 0, 1]).to.equal 8 + (8 * 2 * 0.95)
+        it 'should apply correct discount for two pairs of different books', ->
+            expect(potter.price [0, 0, 1, 1]).to.equal 2 * (8 * 2 * 0.95)
+        #it 'should apply correct discount for group of four diffent books and another group of two different books ', ->
+        #    expect(potter.price [0, 0, 1, 2, 2, 3]).to.equal((8 * 4 * 0.8) + (8 * 2 * 0.95))
+        #it 'should apply correct discount', ->
+        #    expect(potter.price [0, 1, 1, 2, 3, 4]).to.equal 8 + (8 * 5 * 0.75)
 
     describe 'testEdgeCases', ->
         #expect(potter.price [0, 0, 1, 1, 2, 2, 3, 4]).to.equal 2 * (8 * 4 * 0.8)
