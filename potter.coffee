@@ -15,8 +15,6 @@ exports.Potter = class Potter
 
         return discountedPrice
 
-    isEmptyShoppingCart = (shoppingCart) -> return shoppingCart.length == 0
-
     calculateStandardPrice = (books) -> books.length * SINGLE_BOOK_PRICE
 
     calculateAbsoluteDiscount = (shoppingCart) ->
